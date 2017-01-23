@@ -1,12 +1,12 @@
 package alias
 
 import (
-  "errors"
+	"errors"
 
-  "github.com/tj/cobra"
+	"github.com/tj/cobra"
 
-  "github.com/apex/apex/cmd/apex/root"
-  "github.com/apex/apex/stats"
+	"github.com/apex/apex/cmd/apex/root"
+	"github.com/apex/apex/stats"
 )
 
 // alias name.
@@ -35,41 +35,41 @@ const example = `
 
 // Command config.
 var Command = &cobra.Command{
-  Use:     "alias [<name>...]",
-  Short:   "Create or update alias on functions",
-  Example: example,
-  PreRunE: preRun,
-  RunE:    run,
+	Use:     "alias [<name>...]",
+	Short:   "Create or update alias on functions",
+	Example: example,
+	PreRunE: preRun,
+	RunE:    run,
 }
 
 // Initialize.
 func init() {
-  root.Register(Command)
+	root.Register(Command)
 
-  f := Command.Flags()
-  f.StringVarP(&version, "version", "v", "$LATEST", "Function version")
+	f := Command.Flags()
+	f.StringVarP(&version, "version", "v", "current", "Function version")
 }
 
 // PreRun errors if the alias argument is missing.
 func preRun(c *cobra.Command, args []string) error {
-  if len(args) < 1 {
-    return errors.New("Missing alias argument")
-  }
+	if len(args) < 1 {
+		return errors.New("Missing alias argument")
+	}
 
-  alias = args[0]
-  return nil
+	alias = args[0]
+	return nil
 }
 
 // Run command.
 func run(c *cobra.Command, args []string) error {
-  stats.Track("Alias", map[string]interface{}{
-    "has_version": version != "",
-    "args":        len(args),
-  })
+	stats.Track("Alias", map[string]interface{}{
+		"has_version": version != "",
+		"args":        len(args),
+	})
 
-  if err := root.Project.LoadFunctions(args[1:]...); err != nil {
-    return err
-  }
+	if err := root.Project.LoadFunctions(args[1:]...); err != nil {
+		return err
+	}
 
-  return root.Project.CreateOrUpdateAlias(alias, version)
+	return root.Project.CreateOrUpdateAlias(alias, version)
 }
