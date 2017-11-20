@@ -2,6 +2,8 @@
 
 Apex lets you build, deploy, and manage [AWS Lambda](https://aws.amazon.com/lambda/) functions with ease. With Apex you can use languages that are not natively supported by AWS Lambda, such as Golang, through the use of a Node.js shim injected into the build. A variety of workflow related tooling is provided for testing functions, rolling back deploys, viewing metrics, tailing logs, hooking into the build system and more.
 
+This project is designed for event-driven pipelines as it does not abstract away FaaS (functions as a service). If you are building web applications, APIs, or sites, consider using [Apex Up](https://github.com/apex/up), which provides a more out-of-the-box experience for these use-cases.
+
 ## Installation
 
 On macOS, Linux, or OpenBSD run the following:
@@ -17,6 +19,8 @@ curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
 
 On Windows download [binary](https://github.com/apex/apex/releases).
 
+After downloading, rename binary file 'apex.exe', then add to PATH.
+
 If already installed, upgrade with:
 
 ```
@@ -31,6 +35,8 @@ Currently supports:
 - Golang
 - Python
 - Java
+- Rust
+- Clojure
 
 Example projects for all supported runtimes can be found in [_examples](_examples) directory.
 
@@ -42,7 +48,7 @@ Example projects for all supported runtimes can be found in [_examples](_example
 - Batteries included but optional (opt-in to higher level abstractions)
 - Environment variable population via command-line, file, or inline config
 - Idempotent deployments (checksums skip already-deployed code)
-- Multiple environments via project.ENV.json and function.ENV.json files
+- Multiple environments via `project.ENV.json` and `function.ENV.json` files
 - Configuration inheritance and overrides
 - Command-line function invocation with JSON streams
 - Command & function name autocompletion
@@ -104,7 +110,7 @@ Love our work and community? [Become a backer](https://opencollective.com/apex).
 
 ## Example
 
-Apex projects are made up of a project.json configuration file, and zero or more Lambda functions defined in the "functions" directory. Here's an example file structure:
+Apex projects are made up of a `project.json` configuration file, and zero or more Lambda functions defined in the "functions" directory. Here's an example file structure:
 
 ```
 project.json
@@ -117,7 +123,7 @@ functions
     └── index.js
 ```
 
-The project.json file defines project level configuration that applies to all functions, and defines dependencies. For this simple example the following will do:
+The `project.json` file defines project level configuration that applies to all functions, and defines dependencies. For this simple example the following will do:
 
 ```json
 {
@@ -126,7 +132,7 @@ The project.json file defines project level configuration that applies to all fu
 }
 ```
 
-Each function uses a function.json configuration file to define function-specific properties such as the runtime, amount of memory allocated, and timeout. This file is completely optional, as you can specify defaults in your project.json file. For example:
+Each function uses a `function.json` configuration file to define function-specific properties such as the runtime, amount of memory allocated, and timeout. This file is completely optional, as you can specify defaults in your `project.json` file. For example:
 
 ```json
 {
@@ -178,38 +184,20 @@ $ echo '{ "name": "Tobi" }' | apex invoke bar
 { "hello": "Tobi" }
 ```
 
-See the [Documentation](docs) for more information.
+See the [Documentation](http://apex.run) for more information.
 
 ## Links
 
 - [Website](http://apex.run)
 - [Medium](https://medium.com/apex-serverless)
+- [Slack](https://apex-dev.azurewebsites.net/)
 
-## Notes
+---
 
-Apex collects usage metrics by default to help inform the team, allowing us to determine how commands and flags are used (if ever). No sensitive information is sent, no function names or alias names etc. To get a better idea of what is tracked run:
-
-```
-$ grep -r stats.Track . -A 5
-```
-
-To opt-out at any time simply run:
-
-```
-$ touch ~/.apex/disable
-```
-
-## Badges
-
-[![](http://apex.sh/images/badge.svg)](https://apex.sh/ping/)
 [![Build Status](https://semaphoreci.com/api/v1/projects/d27ff350-b9c5-4d99-96e5-64b1afb441c5/649392/badge.svg)](https://semaphoreci.com/tj/apex)
-[![Slack Status](https://apex-dev.azurewebsites.net/badge.svg)](https://apex-dev.azurewebsites.net/)
+[![Slack Status](https://apex-slackin.herokuapp.com/badge.svg)](https://apex-slackin.herokuapp.com/)
 [![GoDoc](https://godoc.org/github.com/apex/apex?status.svg)](https://godoc.org/github.com/apex/apex)
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 ![](https://img.shields.io/badge/status-stable-green.svg) [![OpenCollective](https://opencollective.com/apex/backers/badge.svg)](#backers) [![OpenCollective](https://opencollective.com/apex/sponsors/badge.svg)](#sponsors)
 
----
-
-> [tjholowaychuk.com](http://tjholowaychuk.com) &nbsp;&middot;&nbsp;
-> GitHub [@tj](https://github.com/tj) &nbsp;&middot;&nbsp;
-> Twitter [@tjholowaychuk](https://twitter.com/tjholowaychuk)
+<a href="https://apex.sh"><img src="http://tjholowaychuk.com:6000/svg/sponsor"></a>

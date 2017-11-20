@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -21,6 +20,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/lambda"
 	"github.com/aws/aws-sdk-go/service/lambda/lambdaiface"
 	"github.com/dustin/go-humanize"
+	"github.com/pkg/errors"
 	"gopkg.in/validator.v2"
 
 	"github.com/apex/apex/archive"
@@ -52,6 +52,7 @@ var defaultPlugins = []string{
 	"python",
 	"nodejs",
 	"java",
+	"clojure",
 	"env",
 	"shim",
 }
@@ -97,6 +98,7 @@ type Config struct {
 	VPC              vpc.VPC           `json:"vpc"`
 	KMSKeyArn        string            `json:"kms_arn"`
 	DeadLetterARN    string            `json:"deadletter_arn"`
+	Zip              string            `json:"zip"`
 }
 
 // Function represents a Lambda function, with configuration loaded
@@ -125,21 +127,22 @@ func (f *Function) Open(environment string) error {
 	f.Log.Debug("open")
 
 	if err := f.loadConfig(environment); err != nil {
-		return err
+		return errors.Wrap(err, "loading config")
 	}
 
 	if err := f.hookOpen(); err != nil {
-		return err
+		return errors.Wrap(err, "open hook")
 	}
 
 	if err := validator.Validate(&f.Config); err != nil {
-		return fmt.Errorf("error opening function %s: %s", f.Name, err.Error())
+		return errors.Wrap(err, "validating")
 	}
 
 	ignoreFile, err := utils.ReadIgnoreFile(f.Path)
 	if err != nil {
-		return err
+		return errors.Wrap(err, "reading ignore file")
 	}
+
 	f.IgnoreFile = append(f.IgnoreFile, []byte("\n")...)
 	f.IgnoreFile = append(f.IgnoreFile, ignoreFile...)
 
@@ -229,7 +232,7 @@ func (f *Function) Setenv(name, value string) {
 func (f *Function) Deploy() error {
 	f.Log.Debug("deploying")
 
-	zip, err := f.BuildBytes()
+	zip, err := f.ZipBytes()
 	if err != nil {
 		return err
 	}
@@ -266,7 +269,21 @@ func (f *Function) DeployCode(zip []byte, config *lambda.GetFunctionOutput) erro
 
 	if localHash == remoteHash {
 		f.Log.Info("code unchanged")
-		return nil
+
+		version := config.Configuration.Version
+
+		// Creating an alias to $LATEST would mean its tied to any future deploys.
+		// To correct this behaviour, we take the latest version at the time of deploy.
+		if *version == "$LATEST" {
+			versions, err := f.versions()
+			if err != nil {
+				return err
+			}
+
+			version = versions[len(versions)-1].Version
+		}
+
+		return f.CreateOrUpdateAlias(f.Alias, *version)
 	}
 
 	f.Log.WithFields(log.Fields{
@@ -281,7 +298,7 @@ func (f *Function) DeployCode(zip []byte, config *lambda.GetFunctionOutput) erro
 func (f *Function) DeployConfigAndCode(zip []byte) error {
 	f.Log.Info("updating config")
 
-	_, err := f.Service.UpdateFunctionConfiguration(&lambda.UpdateFunctionConfigurationInput{
+	params := &lambda.UpdateFunctionConfigurationInput{
 		FunctionName: &f.FunctionName,
 		MemorySize:   &f.Memory,
 		Timeout:      &f.Timeout,
@@ -295,11 +312,15 @@ func (f *Function) DeployConfigAndCode(zip []byte) error {
 			SecurityGroupIds: aws.StringSlice(f.VPC.SecurityGroups),
 			SubnetIds:        aws.StringSlice(f.VPC.Subnets),
 		},
-		DeadLetterConfig: &lambda.DeadLetterConfig{
-			TargetArn: &f.DeadLetterARN,
-		},
-	})
+	}
 
+	if f.DeadLetterARN != "" {
+		params.DeadLetterConfig = &lambda.DeadLetterConfig{
+			TargetArn: &f.DeadLetterARN,
+		}
+	}
+
+	_, err := f.Service.UpdateFunctionConfiguration(params)
 	if err != nil {
 		return err
 	}
@@ -375,7 +396,7 @@ func (f *Function) Update(zip []byte) error {
 func (f *Function) Create(zip []byte) error {
 	f.Log.Info("creating function")
 
-	created, err := f.Service.CreateFunction(&lambda.CreateFunctionInput{
+	params := &lambda.CreateFunctionInput{
 		FunctionName: &f.FunctionName,
 		Description:  &f.Description,
 		MemorySize:   &f.Memory,
@@ -393,11 +414,15 @@ func (f *Function) Create(zip []byte) error {
 			SecurityGroupIds: aws.StringSlice(f.VPC.SecurityGroups),
 			SubnetIds:        aws.StringSlice(f.VPC.Subnets),
 		},
-		DeadLetterConfig: &lambda.DeadLetterConfig{
-			TargetArn: &f.DeadLetterARN,
-		},
-	})
+	}
 
+	if f.DeadLetterARN != "" {
+		params.DeadLetterConfig = &lambda.DeadLetterConfig{
+			TargetArn: &f.DeadLetterARN,
+		}
+	}
+
+	created, err := f.Service.CreateFunction(params)
 	if err != nil {
 		return err
 	}
@@ -573,6 +598,18 @@ func (f *Function) RollbackVersion(version string) error {
 	return nil
 }
 
+// ZipBytes builds the in-memory zip, or reads
+// the .Zip from disk if specified.
+func (f *Function) ZipBytes() ([]byte, error) {
+	if f.Zip == "" {
+		f.Log.Debug("building zip")
+		return f.BuildBytes()
+	}
+
+	f.Log.Debugf("reading zip %q", f.Zip)
+	return ioutil.ReadFile(f.Zip)
+}
+
 // BuildBytes returns the generated zip as bytes.
 func (f *Function) BuildBytes() ([]byte, error) {
 	r, err := f.Build()
@@ -726,6 +763,7 @@ func (f *Function) removeVersions(versions []*lambda.FunctionConfiguration) erro
 			FunctionName: &f.FunctionName,
 			Qualifier:    v.Version,
 		})
+
 		if err != nil {
 			return err
 		}
@@ -770,9 +808,12 @@ func (f *Function) configChanged(config *lambda.GetFunctionOutput) bool {
 			Subnets:        f.VPC.Subnets,
 			SecurityGroups: f.VPC.SecurityGroups,
 		},
-		DeadLetterConfig: lambda.DeadLetterConfig{
+	}
+
+	if f.DeadLetterARN != "" {
+		localConfig.DeadLetterConfig = lambda.DeadLetterConfig{
 			TargetArn: &f.DeadLetterARN,
-		},
+		}
 	}
 
 	remoteConfig := &diffConfig{

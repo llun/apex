@@ -1,4 +1,57 @@
 
+v0.16.0 / 2017-10-14
+====================
+
+  * add `./vendor`
+  * refactor: move `process.env` out of the shim event handlers
+  * refactor shim, allowing for concurrent calls to handler (#822)
+  * remove analytics. Closes #777
+  * fix node runtime
+  * fix deploying java and clojure functions from zipfile (#820)
+  * fix #815 - clojure deployments being doubled by java plugin (#816)
+  * fix for issue #380 (#814)
+  * fix: move -C chdir flag check to beginning of preparation function. (#766)
+
+v0.15.0 / 2017-06-11
+====================
+
+  * add passing of maps that describe all apex functions to terraform Closes #737 (#744)
+  * added nodejs4.3-edge runtime (#741)
+  * add ListFunctions to min IAM policy example (#733)
+  * add documentation to set alias to another alias (#732)
+  * add arbitrary python version support. Closes #723
+  * Add lambda:ListAliases to min IAM policy (#729)
+  * add --alias docs
+  * change DefaultRetainedVersions to 25
+  * Update function deploy to update the specified alias even if code has not changed. Closes #686 (#712)
+  * upgrade example to use nodejs version 6.10 (#719)
+  * fix tabs in deploy example
+
+v0.14.0 / 2017-03-31
+====================
+
+  * add support for deploying existing zips. Closes #480
+  * change index.js inference to use v6.10
+  * fix empty DeadLetterARN config triggering deploy no matter what. Possibly Closes #701 (#713)
+  * fix webpack2 example for version 2.3.1 (#709)
+
+v0.13.1 / 2017-03-23
+====================
+
+  * add Node v6.10 support. Closes #493
+  * change runtime to nodejs43 for rust lambdas (#689)
+  * fix context for gh ListReleases call (#691)
+  * fix alias command example by removing v prefix: v5 should be just 5 (#681)
+
+v0.13.0 / 2017-02-15
+====================
+
+  * add clojure support (#674)
+  * add variable apex_function_NAME_name to the exported variable to terraform (Closes #654) (#660)
+  * add support for DLQ ARN (#649)
+  * add support for KMS ARN (#648)
+  * add alias command (#647)
+
 v0.12.0 / 2017-01-06
 ====================
 

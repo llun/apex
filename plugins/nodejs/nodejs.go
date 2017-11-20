@@ -1,18 +1,19 @@
 // Package nodejs implements the "nodejs" runtime.
 package nodejs
 
-import "github.com/apex/apex/function"
+import (
+	"strings"
+
+	"github.com/apex/apex/function"
+)
 
 const (
-	// Runtime name used by Apex and by AWS Lambda for Node.js 0.10
-	Runtime = "nodejs"
-	// Runtime43 name used by Apex and by AWS Lambda for Node.js 4.3.2
-	Runtime43 = "nodejs4.3"
+	// Runtime for inference.
+	Runtime = "nodejs6.10"
 )
 
 func init() {
-	function.RegisterPlugin(Runtime, &Plugin{})
-	function.RegisterPlugin(Runtime43, &Plugin{})
+	function.RegisterPlugin("nodejs", &Plugin{})
 }
 
 // Plugin implementation.
@@ -20,8 +21,12 @@ type Plugin struct{}
 
 // Open adds nodejs defaults.
 func (p *Plugin) Open(fn *function.Function) error {
-	if !runtimeSupported(fn) {
+	if !strings.HasPrefix(fn.Runtime, "nodejs") {
 		return nil
+	}
+
+	if fn.Runtime == "nodejs" {
+		fn.Runtime = Runtime
 	}
 
 	if fn.Handler == "" {
@@ -29,8 +34,4 @@ func (p *Plugin) Open(fn *function.Function) error {
 	}
 
 	return nil
-}
-
-func runtimeSupported(fn *function.Function) bool {
-	return fn.Runtime == Runtime || fn.Runtime == Runtime43
 }

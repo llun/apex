@@ -3,7 +3,6 @@ package java
 
 import (
 	azip "archive/zip"
-	"errors"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -11,13 +10,16 @@ import (
 
 	"github.com/apex/apex/archive"
 	"github.com/apex/apex/function"
+	"github.com/pkg/errors"
 )
 
 const (
 	// Runtime name used by Apex
 	Runtime = "java"
+
 	// RuntimeCanonical represents names used by AWS Lambda
 	RuntimeCanonical = "java8"
+
 	// jarFile
 	jarFile = "apex.jar"
 )
@@ -38,7 +40,7 @@ type Plugin struct{}
 // assumed that the build tool generating the fat JAR will handle that workflow
 // on its own.
 func (p *Plugin) Open(fn *function.Function) error {
-	if fn.Runtime != Runtime {
+	if !strings.HasPrefix(fn.Runtime, "java") {
 		return nil
 	}
 
@@ -59,20 +61,18 @@ func (p *Plugin) Open(fn *function.Function) error {
 
 // Build adds the jar contents to zipfile.
 func (p *Plugin) Build(fn *function.Function, zip *archive.Zip) error {
-	if fn.Runtime != Runtime {
+	if !strings.HasPrefix(fn.Runtime, "java") {
 		return nil
 	}
-	fn.Runtime = RuntimeCanonical
 
 	fn.Log.Debugf("searching for JAR (%s) in directories: %s", jarFile, strings.Join(jarSearchPaths, ", "))
-	expectedJarPath := findJar(fn.Path)
-	if expectedJarPath == "" {
-		return errors.New("Expected jar file not found")
+	jar := findJar(fn.Path)
+	if jar == "" {
+		return errors.Errorf("missing jar file %q", jar)
 	}
-	fn.Log.Debugf("found jar path: %s", expectedJarPath)
 
 	fn.Log.Debug("appending compiled files")
-	reader, err := azip.OpenReader(expectedJarPath)
+	reader, err := azip.OpenReader(jar)
 	if err != nil {
 		return err
 	}
@@ -81,12 +81,12 @@ func (p *Plugin) Build(fn *function.Function, zip *archive.Zip) error {
 	for _, file := range reader.File {
 		r, err := file.Open()
 		if err != nil {
-			return err
+			return errors.Wrap(err, "opening file")
 		}
 
 		b, err := ioutil.ReadAll(r)
 		if err != nil {
-			return err
+			return errors.Wrap(err, "reading file")
 		}
 		r.Close()
 
@@ -96,12 +96,22 @@ func (p *Plugin) Build(fn *function.Function, zip *archive.Zip) error {
 	return nil
 }
 
+func (p *Plugin) Deploy(fn *function.Function) error {
+	if !strings.HasPrefix(fn.Runtime, "java") {
+		return nil
+	}
+	fn.Runtime = RuntimeCanonical
+
+	return nil
+}
+
 func findJar(fnPath string) string {
 	for _, path := range jarSearchPaths {
-		jarPath := filepath.Join(fnPath, path, jarFile)
-		if _, err := os.Stat(jarPath); err == nil {
-			return jarPath
+		jar := filepath.Join(fnPath, path, jarFile)
+		if _, err := os.Stat(jar); err == nil {
+			return jar
 		}
 	}
+
 	return ""
 }

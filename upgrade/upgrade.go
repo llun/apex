@@ -2,6 +2,7 @@
 package upgrade
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -21,7 +22,7 @@ func Upgrade(version string) error {
 
 	// fetch releases
 	gh := github.NewClient(nil)
-	releases, _, err := gh.Repositories.ListReleases("apex", "apex", nil)
+	releases, _, err := gh.Repositories.ListReleases(context.Background(), "apex", "apex", nil)
 	if err != nil {
 		return err
 	}

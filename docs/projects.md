@@ -18,7 +18,7 @@ defaults for functions, if desired. Here's an example of a project.json file dec
 
 ## Multiple Environments
 
-Multiple environments are supported with the --env flag. By default project.json and function.json are used, however when --env is specified project.ENV.json and function.ENV.json will be used, falling back on function.json for cases when staging and production config is the same. For example your directory structure may look something like the following:
+Multiple environments are supported with the `--env` flag. By default project.json and function.json are used, however when `--env` is specified project.ENV.json and function.ENV.json will be used, falling back on function.json for cases when staging and production config is the same. For example your directory structure may look something like the following:
 
 ```
 project.stage.json
@@ -78,10 +78,13 @@ Default runtime of function(s) unless specified in their function.json configura
 Runtimes supported:
 
 - __java__ (Java 8)
-- __python__ (Python 2.7)
-- __nodejs__ (Node.js 0.10)
+- __python2.7__ (Python 2.7)
+- __python3.6__ (Python 3.6)
 - __nodejs4.3__ (Node.js 4.3)
+- __nodejs4.3-edge__ (Node.js 4.3 Edge)
+- __nodejs6.10__ (Node.js 6.10)
 - __golang__ (any version)
+- __clojure__ (any version)
 - __rust-musl[^rust-runtime][^rust-linux-only]__ (any version)
 - __rust-gnu[^rust-runtime][^rust-linux-only]__ (any version)
 

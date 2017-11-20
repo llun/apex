@@ -4,6 +4,7 @@
 package mock_lambdaiface
 
 import (
+	aws "github.com/aws/aws-sdk-go/aws"
 	request "github.com/aws/aws-sdk-go/aws/request"
 	lambda "github.com/aws/aws-sdk-go/service/lambda"
 	gomock "github.com/golang/mock/gomock"
@@ -52,6 +53,22 @@ func (_mr *_MockLambdaAPIRecorder) AddPermissionRequest(arg0 interface{}) *gomoc
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "AddPermissionRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) AddPermissionWithContext(_param0 aws.Context, _param1 *lambda.AddPermissionInput, _param2 ...request.Option) (*lambda.AddPermissionOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "AddPermissionWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.AddPermissionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) AddPermissionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "AddPermissionWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) CreateAlias(_param0 *lambda.CreateAliasInput) (*lambda.AliasConfiguration, error) {
 	ret := _m.ctrl.Call(_m, "CreateAlias", _param0)
 	ret0, _ := ret[0].(*lambda.AliasConfiguration)
@@ -72,6 +89,22 @@ func (_m *MockLambdaAPI) CreateAliasRequest(_param0 *lambda.CreateAliasInput) (*
 
 func (_mr *_MockLambdaAPIRecorder) CreateAliasRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateAliasRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) CreateAliasWithContext(_param0 aws.Context, _param1 *lambda.CreateAliasInput, _param2 ...request.Option) (*lambda.AliasConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "CreateAliasWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.AliasConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) CreateAliasWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateAliasWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) CreateEventSourceMapping(_param0 *lambda.CreateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error) {
@@ -96,6 +129,22 @@ func (_mr *_MockLambdaAPIRecorder) CreateEventSourceMappingRequest(arg0 interfac
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateEventSourceMappingRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) CreateEventSourceMappingWithContext(_param0 aws.Context, _param1 *lambda.CreateEventSourceMappingInput, _param2 ...request.Option) (*lambda.EventSourceMappingConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "CreateEventSourceMappingWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.EventSourceMappingConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) CreateEventSourceMappingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateEventSourceMappingWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) CreateFunction(_param0 *lambda.CreateFunctionInput) (*lambda.FunctionConfiguration, error) {
 	ret := _m.ctrl.Call(_m, "CreateFunction", _param0)
 	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
@@ -116,6 +165,22 @@ func (_m *MockLambdaAPI) CreateFunctionRequest(_param0 *lambda.CreateFunctionInp
 
 func (_mr *_MockLambdaAPIRecorder) CreateFunctionRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateFunctionRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) CreateFunctionWithContext(_param0 aws.Context, _param1 *lambda.CreateFunctionInput, _param2 ...request.Option) (*lambda.FunctionConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "CreateFunctionWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) CreateFunctionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateFunctionWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) DeleteAlias(_param0 *lambda.DeleteAliasInput) (*lambda.DeleteAliasOutput, error) {
@@ -140,6 +205,22 @@ func (_mr *_MockLambdaAPIRecorder) DeleteAliasRequest(arg0 interface{}) *gomock.
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAliasRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) DeleteAliasWithContext(_param0 aws.Context, _param1 *lambda.DeleteAliasInput, _param2 ...request.Option) (*lambda.DeleteAliasOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteAliasWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.DeleteAliasOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) DeleteAliasWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAliasWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) DeleteEventSourceMapping(_param0 *lambda.DeleteEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error) {
 	ret := _m.ctrl.Call(_m, "DeleteEventSourceMapping", _param0)
 	ret0, _ := ret[0].(*lambda.EventSourceMappingConfiguration)
@@ -160,6 +241,22 @@ func (_m *MockLambdaAPI) DeleteEventSourceMappingRequest(_param0 *lambda.DeleteE
 
 func (_mr *_MockLambdaAPIRecorder) DeleteEventSourceMappingRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteEventSourceMappingRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) DeleteEventSourceMappingWithContext(_param0 aws.Context, _param1 *lambda.DeleteEventSourceMappingInput, _param2 ...request.Option) (*lambda.EventSourceMappingConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteEventSourceMappingWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.EventSourceMappingConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) DeleteEventSourceMappingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteEventSourceMappingWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) DeleteFunction(_param0 *lambda.DeleteFunctionInput) (*lambda.DeleteFunctionOutput, error) {
@@ -184,6 +281,22 @@ func (_mr *_MockLambdaAPIRecorder) DeleteFunctionRequest(arg0 interface{}) *gomo
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteFunctionRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) DeleteFunctionWithContext(_param0 aws.Context, _param1 *lambda.DeleteFunctionInput, _param2 ...request.Option) (*lambda.DeleteFunctionOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteFunctionWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.DeleteFunctionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) DeleteFunctionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteFunctionWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) GetAccountSettings(_param0 *lambda.GetAccountSettingsInput) (*lambda.GetAccountSettingsOutput, error) {
 	ret := _m.ctrl.Call(_m, "GetAccountSettings", _param0)
 	ret0, _ := ret[0].(*lambda.GetAccountSettingsOutput)
@@ -204,6 +317,22 @@ func (_m *MockLambdaAPI) GetAccountSettingsRequest(_param0 *lambda.GetAccountSet
 
 func (_mr *_MockLambdaAPIRecorder) GetAccountSettingsRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetAccountSettingsRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) GetAccountSettingsWithContext(_param0 aws.Context, _param1 *lambda.GetAccountSettingsInput, _param2 ...request.Option) (*lambda.GetAccountSettingsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetAccountSettingsWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.GetAccountSettingsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) GetAccountSettingsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetAccountSettingsWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) GetAlias(_param0 *lambda.GetAliasInput) (*lambda.AliasConfiguration, error) {
@@ -228,6 +357,22 @@ func (_mr *_MockLambdaAPIRecorder) GetAliasRequest(arg0 interface{}) *gomock.Cal
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetAliasRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) GetAliasWithContext(_param0 aws.Context, _param1 *lambda.GetAliasInput, _param2 ...request.Option) (*lambda.AliasConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetAliasWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.AliasConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) GetAliasWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetAliasWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) GetEventSourceMapping(_param0 *lambda.GetEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error) {
 	ret := _m.ctrl.Call(_m, "GetEventSourceMapping", _param0)
 	ret0, _ := ret[0].(*lambda.EventSourceMappingConfiguration)
@@ -248,6 +393,22 @@ func (_m *MockLambdaAPI) GetEventSourceMappingRequest(_param0 *lambda.GetEventSo
 
 func (_mr *_MockLambdaAPIRecorder) GetEventSourceMappingRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetEventSourceMappingRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) GetEventSourceMappingWithContext(_param0 aws.Context, _param1 *lambda.GetEventSourceMappingInput, _param2 ...request.Option) (*lambda.EventSourceMappingConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetEventSourceMappingWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.EventSourceMappingConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) GetEventSourceMappingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetEventSourceMappingWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) GetFunction(_param0 *lambda.GetFunctionInput) (*lambda.GetFunctionOutput, error) {
@@ -283,6 +444,22 @@ func (_mr *_MockLambdaAPIRecorder) GetFunctionConfigurationRequest(arg0 interfac
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetFunctionConfigurationRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) GetFunctionConfigurationWithContext(_param0 aws.Context, _param1 *lambda.GetFunctionConfigurationInput, _param2 ...request.Option) (*lambda.FunctionConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetFunctionConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) GetFunctionConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetFunctionConfigurationWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) GetFunctionRequest(_param0 *lambda.GetFunctionInput) (*request.Request, *lambda.GetFunctionOutput) {
 	ret := _m.ctrl.Call(_m, "GetFunctionRequest", _param0)
 	ret0, _ := ret[0].(*request.Request)
@@ -292,6 +469,22 @@ func (_m *MockLambdaAPI) GetFunctionRequest(_param0 *lambda.GetFunctionInput) (*
 
 func (_mr *_MockLambdaAPIRecorder) GetFunctionRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetFunctionRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) GetFunctionWithContext(_param0 aws.Context, _param1 *lambda.GetFunctionInput, _param2 ...request.Option) (*lambda.GetFunctionOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetFunctionWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.GetFunctionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) GetFunctionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetFunctionWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) GetPolicy(_param0 *lambda.GetPolicyInput) (*lambda.GetPolicyOutput, error) {
@@ -314,6 +507,22 @@ func (_m *MockLambdaAPI) GetPolicyRequest(_param0 *lambda.GetPolicyInput) (*requ
 
 func (_mr *_MockLambdaAPIRecorder) GetPolicyRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetPolicyRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) GetPolicyWithContext(_param0 aws.Context, _param1 *lambda.GetPolicyInput, _param2 ...request.Option) (*lambda.GetPolicyOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetPolicyWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.GetPolicyOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) GetPolicyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetPolicyWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) Invoke(_param0 *lambda.InvokeInput) (*lambda.InvokeOutput, error) {
@@ -349,6 +558,22 @@ func (_mr *_MockLambdaAPIRecorder) InvokeAsyncRequest(arg0 interface{}) *gomock.
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "InvokeAsyncRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) InvokeAsyncWithContext(_param0 aws.Context, _param1 *lambda.InvokeAsyncInput, _param2 ...request.Option) (*lambda.InvokeAsyncOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "InvokeAsyncWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.InvokeAsyncOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) InvokeAsyncWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "InvokeAsyncWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) InvokeRequest(_param0 *lambda.InvokeInput) (*request.Request, *lambda.InvokeOutput) {
 	ret := _m.ctrl.Call(_m, "InvokeRequest", _param0)
 	ret0, _ := ret[0].(*request.Request)
@@ -358,6 +583,22 @@ func (_m *MockLambdaAPI) InvokeRequest(_param0 *lambda.InvokeInput) (*request.Re
 
 func (_mr *_MockLambdaAPIRecorder) InvokeRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "InvokeRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) InvokeWithContext(_param0 aws.Context, _param1 *lambda.InvokeInput, _param2 ...request.Option) (*lambda.InvokeOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "InvokeWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.InvokeOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) InvokeWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "InvokeWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) ListAliases(_param0 *lambda.ListAliasesInput) (*lambda.ListAliasesOutput, error) {
@@ -382,6 +623,22 @@ func (_mr *_MockLambdaAPIRecorder) ListAliasesRequest(arg0 interface{}) *gomock.
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) ListAliasesWithContext(_param0 aws.Context, _param1 *lambda.ListAliasesInput, _param2 ...request.Option) (*lambda.ListAliasesOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListAliasesWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.ListAliasesOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListAliasesWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) ListEventSourceMappings(_param0 *lambda.ListEventSourceMappingsInput) (*lambda.ListEventSourceMappingsOutput, error) {
 	ret := _m.ctrl.Call(_m, "ListEventSourceMappings", _param0)
 	ret0, _ := ret[0].(*lambda.ListEventSourceMappingsOutput)
@@ -403,6 +660,21 @@ func (_mr *_MockLambdaAPIRecorder) ListEventSourceMappingsPages(arg0, arg1 inter
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListEventSourceMappingsPages", arg0, arg1)
 }
 
+func (_m *MockLambdaAPI) ListEventSourceMappingsPagesWithContext(_param0 aws.Context, _param1 *lambda.ListEventSourceMappingsInput, _param2 func(*lambda.ListEventSourceMappingsOutput, bool) bool, _param3 ...request.Option) error {
+	_s := []interface{}{_param0, _param1, _param2}
+	for _, _x := range _param3 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListEventSourceMappingsPagesWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListEventSourceMappingsPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListEventSourceMappingsPagesWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) ListEventSourceMappingsRequest(_param0 *lambda.ListEventSourceMappingsInput) (*request.Request, *lambda.ListEventSourceMappingsOutput) {
 	ret := _m.ctrl.Call(_m, "ListEventSourceMappingsRequest", _param0)
 	ret0, _ := ret[0].(*request.Request)
@@ -412,6 +684,22 @@ func (_m *MockLambdaAPI) ListEventSourceMappingsRequest(_param0 *lambda.ListEven
 
 func (_mr *_MockLambdaAPIRecorder) ListEventSourceMappingsRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListEventSourceMappingsRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) ListEventSourceMappingsWithContext(_param0 aws.Context, _param1 *lambda.ListEventSourceMappingsInput, _param2 ...request.Option) (*lambda.ListEventSourceMappingsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListEventSourceMappingsWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.ListEventSourceMappingsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListEventSourceMappingsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListEventSourceMappingsWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) ListFunctions(_param0 *lambda.ListFunctionsInput) (*lambda.ListFunctionsOutput, error) {
@@ -435,6 +723,21 @@ func (_mr *_MockLambdaAPIRecorder) ListFunctionsPages(arg0, arg1 interface{}) *g
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListFunctionsPages", arg0, arg1)
 }
 
+func (_m *MockLambdaAPI) ListFunctionsPagesWithContext(_param0 aws.Context, _param1 *lambda.ListFunctionsInput, _param2 func(*lambda.ListFunctionsOutput, bool) bool, _param3 ...request.Option) error {
+	_s := []interface{}{_param0, _param1, _param2}
+	for _, _x := range _param3 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListFunctionsPagesWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListFunctionsPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListFunctionsPagesWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) ListFunctionsRequest(_param0 *lambda.ListFunctionsInput) (*request.Request, *lambda.ListFunctionsOutput) {
 	ret := _m.ctrl.Call(_m, "ListFunctionsRequest", _param0)
 	ret0, _ := ret[0].(*request.Request)
@@ -444,6 +747,60 @@ func (_m *MockLambdaAPI) ListFunctionsRequest(_param0 *lambda.ListFunctionsInput
 
 func (_mr *_MockLambdaAPIRecorder) ListFunctionsRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListFunctionsRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) ListFunctionsWithContext(_param0 aws.Context, _param1 *lambda.ListFunctionsInput, _param2 ...request.Option) (*lambda.ListFunctionsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListFunctionsWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.ListFunctionsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListFunctionsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListFunctionsWithContext", _s...)
+}
+
+func (_m *MockLambdaAPI) ListTags(_param0 *lambda.ListTagsInput) (*lambda.ListTagsOutput, error) {
+	ret := _m.ctrl.Call(_m, "ListTags", _param0)
+	ret0, _ := ret[0].(*lambda.ListTagsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListTags(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTags", arg0)
+}
+
+func (_m *MockLambdaAPI) ListTagsRequest(_param0 *lambda.ListTagsInput) (*request.Request, *lambda.ListTagsOutput) {
+	ret := _m.ctrl.Call(_m, "ListTagsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*lambda.ListTagsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListTagsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTagsRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) ListTagsWithContext(_param0 aws.Context, _param1 *lambda.ListTagsInput, _param2 ...request.Option) (*lambda.ListTagsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListTagsWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.ListTagsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListTagsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTagsWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) ListVersionsByFunction(_param0 *lambda.ListVersionsByFunctionInput) (*lambda.ListVersionsByFunctionOutput, error) {
@@ -468,6 +825,22 @@ func (_mr *_MockLambdaAPIRecorder) ListVersionsByFunctionRequest(arg0 interface{
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListVersionsByFunctionRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) ListVersionsByFunctionWithContext(_param0 aws.Context, _param1 *lambda.ListVersionsByFunctionInput, _param2 ...request.Option) (*lambda.ListVersionsByFunctionOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListVersionsByFunctionWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.ListVersionsByFunctionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) ListVersionsByFunctionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListVersionsByFunctionWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) PublishVersion(_param0 *lambda.PublishVersionInput) (*lambda.FunctionConfiguration, error) {
 	ret := _m.ctrl.Call(_m, "PublishVersion", _param0)
 	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
@@ -488,6 +861,22 @@ func (_m *MockLambdaAPI) PublishVersionRequest(_param0 *lambda.PublishVersionInp
 
 func (_mr *_MockLambdaAPIRecorder) PublishVersionRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PublishVersionRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) PublishVersionWithContext(_param0 aws.Context, _param1 *lambda.PublishVersionInput, _param2 ...request.Option) (*lambda.FunctionConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PublishVersionWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) PublishVersionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PublishVersionWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) RemovePermission(_param0 *lambda.RemovePermissionInput) (*lambda.RemovePermissionOutput, error) {
@@ -512,6 +901,98 @@ func (_mr *_MockLambdaAPIRecorder) RemovePermissionRequest(arg0 interface{}) *go
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "RemovePermissionRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) RemovePermissionWithContext(_param0 aws.Context, _param1 *lambda.RemovePermissionInput, _param2 ...request.Option) (*lambda.RemovePermissionOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "RemovePermissionWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.RemovePermissionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) RemovePermissionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RemovePermissionWithContext", _s...)
+}
+
+func (_m *MockLambdaAPI) TagResource(_param0 *lambda.TagResourceInput) (*lambda.TagResourceOutput, error) {
+	ret := _m.ctrl.Call(_m, "TagResource", _param0)
+	ret0, _ := ret[0].(*lambda.TagResourceOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) TagResource(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResource", arg0)
+}
+
+func (_m *MockLambdaAPI) TagResourceRequest(_param0 *lambda.TagResourceInput) (*request.Request, *lambda.TagResourceOutput) {
+	ret := _m.ctrl.Call(_m, "TagResourceRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*lambda.TagResourceOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) TagResourceRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) TagResourceWithContext(_param0 aws.Context, _param1 *lambda.TagResourceInput, _param2 ...request.Option) (*lambda.TagResourceOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "TagResourceWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.TagResourceOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) TagResourceWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceWithContext", _s...)
+}
+
+func (_m *MockLambdaAPI) UntagResource(_param0 *lambda.UntagResourceInput) (*lambda.UntagResourceOutput, error) {
+	ret := _m.ctrl.Call(_m, "UntagResource", _param0)
+	ret0, _ := ret[0].(*lambda.UntagResourceOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) UntagResource(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResource", arg0)
+}
+
+func (_m *MockLambdaAPI) UntagResourceRequest(_param0 *lambda.UntagResourceInput) (*request.Request, *lambda.UntagResourceOutput) {
+	ret := _m.ctrl.Call(_m, "UntagResourceRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*lambda.UntagResourceOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) UntagResourceRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) UntagResourceWithContext(_param0 aws.Context, _param1 *lambda.UntagResourceInput, _param2 ...request.Option) (*lambda.UntagResourceOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "UntagResourceWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.UntagResourceOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) UntagResourceWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) UpdateAlias(_param0 *lambda.UpdateAliasInput) (*lambda.AliasConfiguration, error) {
 	ret := _m.ctrl.Call(_m, "UpdateAlias", _param0)
 	ret0, _ := ret[0].(*lambda.AliasConfiguration)
@@ -532,6 +1013,22 @@ func (_m *MockLambdaAPI) UpdateAliasRequest(_param0 *lambda.UpdateAliasInput) (*
 
 func (_mr *_MockLambdaAPIRecorder) UpdateAliasRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateAliasRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) UpdateAliasWithContext(_param0 aws.Context, _param1 *lambda.UpdateAliasInput, _param2 ...request.Option) (*lambda.AliasConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "UpdateAliasWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.AliasConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) UpdateAliasWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateAliasWithContext", _s...)
 }
 
 func (_m *MockLambdaAPI) UpdateEventSourceMapping(_param0 *lambda.UpdateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error) {
@@ -556,6 +1053,22 @@ func (_mr *_MockLambdaAPIRecorder) UpdateEventSourceMappingRequest(arg0 interfac
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateEventSourceMappingRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) UpdateEventSourceMappingWithContext(_param0 aws.Context, _param1 *lambda.UpdateEventSourceMappingInput, _param2 ...request.Option) (*lambda.EventSourceMappingConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "UpdateEventSourceMappingWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.EventSourceMappingConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) UpdateEventSourceMappingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateEventSourceMappingWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) UpdateFunctionCode(_param0 *lambda.UpdateFunctionCodeInput) (*lambda.FunctionConfiguration, error) {
 	ret := _m.ctrl.Call(_m, "UpdateFunctionCode", _param0)
 	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
@@ -578,6 +1091,22 @@ func (_mr *_MockLambdaAPIRecorder) UpdateFunctionCodeRequest(arg0 interface{}) *
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateFunctionCodeRequest", arg0)
 }
 
+func (_m *MockLambdaAPI) UpdateFunctionCodeWithContext(_param0 aws.Context, _param1 *lambda.UpdateFunctionCodeInput, _param2 ...request.Option) (*lambda.FunctionConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "UpdateFunctionCodeWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) UpdateFunctionCodeWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateFunctionCodeWithContext", _s...)
+}
+
 func (_m *MockLambdaAPI) UpdateFunctionConfiguration(_param0 *lambda.UpdateFunctionConfigurationInput) (*lambda.FunctionConfiguration, error) {
 	ret := _m.ctrl.Call(_m, "UpdateFunctionConfiguration", _param0)
 	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
@@ -598,4 +1127,20 @@ func (_m *MockLambdaAPI) UpdateFunctionConfigurationRequest(_param0 *lambda.Upda
 
 func (_mr *_MockLambdaAPIRecorder) UpdateFunctionConfigurationRequest(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateFunctionConfigurationRequest", arg0)
+}
+
+func (_m *MockLambdaAPI) UpdateFunctionConfigurationWithContext(_param0 aws.Context, _param1 *lambda.UpdateFunctionConfigurationInput, _param2 ...request.Option) (*lambda.FunctionConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "UpdateFunctionConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*lambda.FunctionConfiguration)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockLambdaAPIRecorder) UpdateFunctionConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateFunctionConfigurationWithContext", _s...)
 }
